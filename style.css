@@ -7,7 +7,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 1.5rem;
-  background: #0b6623; /* verde institucional */
+  background: #90ee90; /* verde claro */ /* verde institucional */
   color: #fff;
 }
 
@@ -42,7 +42,7 @@ form fieldset {
 
 legend {
   font-weight: bold;
-  background: #0b6623; /* verde institucional */
+  background: #90ee90; /* verde claro */ /* verde institucional */
   color: #fff;
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
