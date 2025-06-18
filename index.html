@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Condução Térmica de Parede</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo-ifsc.png" alt="Instituto Federal Santa Catarina" id="header-logo">
+    <h1>Condução Térmica em Parede de Duas Camadas</h1>
+  </header>
+
+  <section>
+    <label>
+      Material - Camada 1:
+      <select id="material1">
+        <option value="0.9">Tijolos (0,9 W/m·°C)</option>
+        <option value="0.028">Isopor (0,028 W/m·°C)</option>
+        <option value="0.022">Poliuretano (0,022 W/m·°C)</option>
+        <option value="0.04">Camada de ar (0,04 W/m·°C)</option>
+      </select>
+    </label>
+    <label>
+      Espessura - Camada 1 (m):
+      <input type="text" id="espessura1" placeholder="0,15">
+    </label>
+
+    <label>
+      Material - Camada 2:
+      <select id="material2">
+        <option value="0.9">Tijolos (0,9 W/m·°C)</option>
+        <option value="0.028">Isopor (0,028 W/m·°C)</option>
+        <option value="0.022">Poliuretano (0,022 W/m·°C)</option>
+        <option value="0.04">Camada de ar (0,04 W/m·°C)</option>
+      </select>
+    </label>
+    <label>
+      Espessura - Camada 2 (m):
+      <input type="text" id="espessura2" placeholder="0,05">
+    </label>
+
+    <label>
+      ΔT (°C):
+      <input type="text" id="deltaT" placeholder="7">
+    </label>
+    <label>
+      Área da parede (m²):
+      <input type="text" id="area" placeholder="10">
+    </label>
+
+    <button id="btn-calcular">Calcular Q</button>
+    <div id="resultado"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
