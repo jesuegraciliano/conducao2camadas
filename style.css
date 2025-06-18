@@ -1,13 +1,20 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
-  margin: 2rem;
-  background: green;
+  margin: 0;
+  padding: 1.5rem;
+  background: #0b6623; /* verde institucional */
+  color: #fff;
 }
 
 header {
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 #header-logo {
@@ -16,47 +23,65 @@ header {
 }
 
 h1 {
+  font-size: 1.5rem;
+}
+
+main {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form fieldset {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  background: #fff;
   color: #333;
 }
 
-section {
-  background: green;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 1rem;
+legend {
+  font-weight: bold;
+}
+
+.campo {
+  margin-bottom: 0.8rem;
 }
 
 label {
   display: block;
-  margin: 0.8rem 0;
-  color: #555;
+  font-size: 0.9rem;
 }
 
 input[type="text"],
-select,
+select {
+  width: 100%;
+  padding: 0.4rem;
+  margin-top: 0.2rem;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
 button {
   width: 100%;
   padding: 0.6rem;
-  margin-top: 0.3rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
   background: #0066cc;
-  color: #fff;
   border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #fff;
   cursor: pointer;
-  margin-top: 1rem;
 }
 
 button:hover {
-  background: #005bb5;
+  background: #0055a5;
 }
 
 #resultado {
   margin-top: 1rem;
   font-size: 1.1rem;
   font-weight: bold;
-  color: #222;
+  text-align: center;
+  color: #fff;
 }
