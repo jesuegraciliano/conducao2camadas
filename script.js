@@ -1,37 +1,37 @@
-// Condução em série: Q = U · A · ΔT, com U = 1 / (L1/k1 + L2/k2)
-document.getElementById('btn-calcular').addEventListener('click', () => {
-  // Leitura dos valores
-  const k1 = parseFloat(document.getElementById('material1').value);
-  const k2 = parseFloat(document.getElementById('material2').value);
-  const L1 = parseFloat(
-    document.getElementById('espessura1').value.replace(',', '.')
-  );
-  const L2 = parseFloat(
-    document.getElementById('espessura2').value.replace(',', '.')
-  );
-  const deltaT = parseFloat(
-    document.getElementById('deltaT').value.replace(',', '.')
-  );
-  const A = parseFloat(
-    document.getElementById('area').value.replace(',', '.')
-  );
+document.getElementById('btn-calcular').addEventListener('click', function() {
+    // Função auxiliar para substituir vírgula por ponto e converter para float
+    function parseValor(id) {
+        let valorStr = document.getElementById(id).value.trim().replace(',', '.');
+        return parseFloat(valorStr);
+    }
 
-  // Validação
-  if ([k1, k2, L1, L2, deltaT, A].some(x => isNaN(x) || x <= 0)) {
-    document.getElementById('resultado').textContent =
-      'Por favor, preencha todos os campos com valores válidos.';
-    return;
-  }
+    const k1 = parseValor('k1');
+    const L1 = parseValor('espessura1');
+    const k2 = parseValor('k2');
+    const L2 = parseValor('espessura2');
+    const deltaT = parseValores('deltaT'); // Ajuste conforme sua função original
+    const area = parseValor('area');
+    const deltaTVal = parseValor('deltaT');
 
-  // Resistência térmica equivalente
-  const Req = L1 / k1 + L2 / k2;
-  // Condutância global
-  const U = 1 / Req;
-  // Fluxo de calor
-  const Q = U * A * deltaT;
-  // Formatação brasileira
-  const Qbr = Q.toFixed(1).replace('.', ',');
+    const resultadoDiv = document.getElementById('resultado');
 
-  document.getElementById('resultado').textContent =
-    `Q = ${Qbr} W`;
+    // Validação básica
+    if (isNaN(k1) || isNaN(L1) || isNaN(k2) || isNaN(L2) || isNaN(deltaTVal) || isNaN(area)) {
+        resultadoDiv.innerHTML = "<p style='color: red;'>Por favor, preencha todos os campos corretamente com valores numéricos.</p>";
+        return;
+    }
+
+    // Cálculo da resistência térmica equivalente (R_tot = (L1/k1 + L2/k2) / A)
+    // Ou fluxo de calor Q = ΔT / R_tot = (ΔT * A) / ((L1 / k1) + (L2 / k2))
+    const resistencia1 = L1 / k1;
+    const resistencia2 = L2 / k2;
+    const resistenciaTotal = resistencia1 + resistencia2;
+
+    const Q = (deltaTVal * area) / resistenciaTotal;
+
+    // Exibição do resultado
+    resultadoDiv.innerHTML = `
+        <h3>Resultado:</h3>
+        <p>Fluxo de Calor (Q): <strong>${Q.toFixed(2)} W</strong></p>
+    `;
 });
