@@ -3,61 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Condução Térmica em Parede de Duas Camadas</title>
+  <title>Calculadora de Transmitância Térmica — Parede Multicamada</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="logo-ifsc.png" alt="Instituto Federal Santa Catarina" id="header-logo">
-    <h1>Condução Térmica em Parede de Duas Camadas</h1>
-  </header>
 
-  <main>
-    <form id="formulario">
-      <fieldset>
-        <legend>Propriedades das Camadas</legend>
+<div class="card">
+  <h2>Transmitância Térmica — Parede Multicamada</h2>
+  <p class="subtitle">Condução 1D em regime permanente com resistências superficiais opcionais.</p>
 
-        <div class="campo">
-          <label for="k1">Condutividade Térmica - Camada 1 (k em W/m·°C):</label>
-          <input type="text" id="k1" placeholder="Ex: 0,9">
-        </div>
+  <div class="section-title">
+    <span>Camadas (do interior para o exterior)</span>
+    <button type="button" class="btn-add" onclick="addLayer()">+ Camada</button>
+  </div>
+  <div id="layers"></div>
 
-        <div class="campo">
-          <label for="espessura1">Espessura - Camada 1 (m):</label>
-          <input type="text" id="espessura1" placeholder="Ex: 0,15">
-        </div>
+  <div class="section-title">Resistências superficiais</div>
+  <label class="toggle">
+    <input type="checkbox" id="useSurface" checked onchange="toggleSurface()">
+    Incluir películas (ΔT entre ambientes). Desmarque para ΔT entre faces sólidas.
+  </label>
+  <div class="grid" id="surfaceInputs" style="margin-top:12px;">
+    <div class="form-group">
+      <label for="hi">h interno h_i (W/m²·K):</label>
+      <input type="number" id="hi" step="any" value="8" placeholder="Ex: 8">
+    </div>
+    <div class="form-group">
+      <label for="he">h externo h_e (W/m²·K):</label>
+      <input type="number" id="he" step="any" value="25" placeholder="Ex: 25">
+    </div>
+  </div>
 
-        <div class="campo">
-          <label for="k2">Condutividade Térmica - Camada 2 (k em W/m·°C):</label>
-          <input type="text" id="k2" placeholder="Ex: 0,04">
-        </div>
+  <div class="section-title">Parâmetros do sistema</div>
+  <div class="grid">
+    <div class="form-group">
+      <label for="area">Área A (m²):</label>
+      <input type="number" id="area" step="any" placeholder="Ex: 10">
+    </div>
+    <div class="form-group">
+      <label for="deltaT" id="dtLabel">ΔT entre ambientes (°C ou K):</label>
+      <input type="number" id="deltaT" step="any" placeholder="Ex: 35">
+    </div>
+  </div>
 
-        <div class="campo">
-          <label for="espessura2">Espessura - Camada 2 (m):</label>
-          <input type="text" id="espessura2" placeholder="Ex: 0,05">
-        </div>
-      </fieldset>
+  <button type="button" class="calc" onclick="calcular()">Calcular</button>
 
-      <fieldset>
-        <legend>Dados de Cálculo</legend>
+  <div class="results hidden" id="output"></div>
+  <p class="note">R″ em m²·K/W (independente da área). U = 1/R″_tot. Q = U·A·ΔT. Sinal de Q indica sentido (positivo = do lado quente para o frio).</p>
+</div>
 
-        <div class="campo">
-          <label for="deltaT">ΔT (°C):</label>
-          <input type="text" id="deltaT" placeholder="Ex: 7">
-        </div>
-
-        <div class="campo">
-          <label for="area">Área da parede (m²):</label>
-          <input type="text" id="area" placeholder="Ex: 10">
-        </div>
-      </fieldset>
-
-      <button type="button" id="btn-calcular">Calcular Q</button>
-    </form>
-
-    <div id="resultado" aria-live="polite"></div>
-  </main>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
